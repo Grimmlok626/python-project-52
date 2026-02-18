@@ -1,16 +1,15 @@
 install:
 	hatch env create
-	hatch env run pip install --upgrade pip
-	hatch env run pip install .
+	hatch env run pip install -e .
 
 collectstatic:
-	hatch run python manage.py collectstatic --noinput
+	hatch env run python manage.py collectstatic --noinput
 
 migrate:
-	hatch run python manage.py migrate
+	hatch env run python manage.py migrate
 
 build:
 	./build.sh
 
 render-start:
-	gunicorn task_manager.wsgi
+	hatch run gunicorn task_manager.wsgi
