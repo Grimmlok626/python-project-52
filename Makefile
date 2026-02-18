@@ -2,10 +2,10 @@ install:
 	uv pip install -e .
 
 collectstatic:
-	python manage.py collectstatic --noinput
+	uv run python manage.py collectstatic --noinput
 
 migrate:
-	python manage.py migrate
+	uv run python manage.py migrate
 
 build:
 	./build.sh
