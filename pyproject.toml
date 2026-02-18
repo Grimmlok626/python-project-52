@@ -2,7 +2,7 @@
 name = "hexlet-code"
 dependencies = [
     "django",
-    "uv"  # uv — пакетный менеджер (ссылка astral.sh)
+    "uv",
     "gunicorn",
     "dj-database-url",
     "python-dotenv",
