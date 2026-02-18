@@ -1,0 +1,12 @@
+[project]
+name = "hexlet-code"
+dependencies = [
+    "django",
+    "uv"  # uv — пакетный менеджер (ссылка astral.sh)
+    "gunicorn",
+    "dj-database-url",
+    "python-dotenv",
+]
+
+[tool.hatch.envs.default]
+python = ">=3.10"
