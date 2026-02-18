@@ -1,5 +1,7 @@
 install:
-	hatch run pip install -r requirements.txt
+    hatch env create
+    hatch env run pip install --upgrade pip
+    hatch env run pip install .
 
 collectstatic:
 	hatch run python manage.py collectstatic --noinput
