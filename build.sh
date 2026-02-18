@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-# Установка uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 
-# Установка hatch
-pip install hatch
-
-# Проверка hatch
-which hatch
-hatch --version
-
-# Установка зависимостей и подготовка проекта
+# зависимости ставим через uv
 make install
 make collectstatic
 make migrate
