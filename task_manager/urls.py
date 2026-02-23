@@ -6,6 +6,6 @@ def home(request):
     return HttpResponse("Приветствие!")
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("", home, name="home"),
     path("", home),
 ]
