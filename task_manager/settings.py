@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_bootstrap5",  # Добавляем bootstrap
 ]
 
 MIDDLEWARE = [
@@ -41,7 +42,7 @@ ROOT_URLCONF = "task_manager.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],  # Указываем папку для шаблонов
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -78,15 +79,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "ru-ru"
+LANGUAGE_CODE = "ru-ru"  # Можно оставить или поменять на "en"
 
 TIME_ZONE = "UTC"
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Добавляем путь для хранения переводов
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
