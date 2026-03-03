@@ -1,5 +1,5 @@
 from django.urls import path
-from django.shortcuts import render
+from django.contrib.auth import views as auth_views
 from . import views
 
 def home(request):
@@ -8,6 +8,6 @@ def home(request):
 urlpatterns = [
     path('', home, name='home'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('register/', views.register, name='register'),
-    path('users/', views.users_list, name='users'),
+    path('register/', views.register, name='register'),  # добавьте это
+    path('users/', views.users_list, name='users'),     # оставьте при необходимости
 ]
