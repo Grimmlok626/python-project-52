@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h2>Пользователи</h2>
+<ul class="list-group">
+    {% for user in users %}
+        <li class="list-group-item">{{ user.username }}</li>
+    {% empty %}
+        <li class="list-group-item">Нет пользователей</li>
+    {% endfor %}
+</ul>
+{% endblock %}
