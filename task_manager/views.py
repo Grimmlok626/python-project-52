@@ -1,23 +1,17 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 from django.contrib import messages
 
-def home(request):
-    return render(request, "home.html")
+class RegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login')
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Вы успешно зарегистрировались!')
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'register.html', {'form': form})
-
-def users_list(request):
-    users = User.objects.all()
-    return render(request, 'users.html', {'users': users})
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = form.save()
+        login(self.request, user)
+        messages.success(self.request, 'Вы успешно зарегистрировались!')
+        return response
