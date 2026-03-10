@@ -81,6 +81,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/'
+
 LANGUAGE_CODE = "ru-ru"
 
 TIME_ZONE = "UTC"
