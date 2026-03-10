@@ -3,6 +3,10 @@ from django.contrib.auth import login
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.shortcuts import render
+
+def home(request):
+    return render(request, "home.html")
 
 class RegisterView(CreateView):
     form_class = UserCreationForm
