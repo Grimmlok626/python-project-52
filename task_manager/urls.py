@@ -9,5 +9,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('register/', views.RegisterView.as_view(), name='register'),
+    path('statuses/', include('task_manager.statuses.urls')),
     path('', views.home, name='home'),
 ]

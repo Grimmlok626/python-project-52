@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h2>{{ view.object.pk|default:"Создать" }} Статус</h2>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary mt-3" type="submit">Сохранить</button>
+</form>
+{% endblock %}
