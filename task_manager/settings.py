@@ -62,9 +62,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "task_manager.wsgi.application"
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"),
-        conn_max_age=600,
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', 'postgres://database_name_oqut_user:mRTPazHqUMldeALqN2A0Tr4j2ykqEczL@dpg-d6av3iumcj7s73enf5n0-a.virginia-postgres.render.com/database_name_oqut')
     )
 }
 
