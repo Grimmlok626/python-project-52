@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
-from task_manager.models import Status
+from .models import Status
 from .forms import StatusForm
 from task_manager.models import Task  # предположим, у вас есть модель Task
 
