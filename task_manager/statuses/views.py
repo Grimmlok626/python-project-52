@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import Status
 from .forms import StatusForm
-from task_manager.models import Task  # предположим, у вас есть модель Task
+##from task_manager.models import Task
 
 class StatusListView(LoginRequiredMixin, generic.ListView):
     model = Status
