@@ -7,6 +7,12 @@ class Status(models.Model):
     def __str__(self):
         return self.name
 
+class Label(models.Model):
+    name = models.CharField(max_length=255, unique=True, verbose_name='Имя')
+
+    def __str__(self):
+        return self.name
+
 class Task(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
@@ -14,6 +20,7 @@ class Task(models.Model):
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_tasks')
     created_at = models.DateTimeField(auto_now_add=True)
+    labels = models.ManyToManyField(Label, related_name='tasks', blank=True)
 
     def __str__(self):
         return self.name

@@ -11,5 +11,6 @@ urlpatterns = [
     path('tasks/', include('task_manager.tasks.urls')),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('statuses/', include('task_manager.statuses.urls')),
+    path('labels/', include('task_manager.labels.urls')),
     path('', views.home, name='home'),
 ]

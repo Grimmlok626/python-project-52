@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<h2>Метки</h2>
+<a href="{% url 'labels:create' %}" class="btn btn-success mb-3">Создать метку</a>
+<table class="table table-striped">
+<tr>
+    <th>Имя</th>
+    <th>Действия</th>
+</tr>
+{% for label in labels %}
+<tr>
+    <td>{{ label.name }}</td>
+    <td>
+        <a href="{% url 'labels:update' label.pk %}">Изменить</a>
+        <a href="{% url 'labels:delete' label.pk %}">Удалить</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
