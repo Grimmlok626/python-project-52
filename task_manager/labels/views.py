@@ -2,7 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
-from ..models import Label
+from django.shortcuts import redirect
+from .models import Label
+from .forms import LabelForm
 
 class LabelListView(LoginRequiredMixin, generic.ListView):
     model = Label
@@ -25,7 +27,7 @@ class LabelUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVie
     template_name = 'labels/label_form.html'
     
     def test_func(self):
-        return self.request.user.is_authenticated  # или добавьте проверку, если нужно
+        return self.request.user.is_authenticated
     
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -38,7 +40,6 @@ class LabelDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVie
     success_url = reverse_lazy('labels:list')
     
     def test_func(self):
-        # Можно добавить проверку, чтобы только залогиненные, или свои роли
         return self.request.user.is_authenticated
     
     def delete(self, request, *args, **kwargs):
