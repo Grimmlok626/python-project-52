@@ -3,7 +3,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.shortcuts import redirect
-from .models import Label
+from ..models import Label
 from .forms import LabelForm
 
 class LabelListView(LoginRequiredMixin, generic.ListView):
