@@ -2,6 +2,20 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
+import rollbar
+
+ROLLBAR = {
+    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN', ''),
+    'environment': os.getenv('DJANGO_ENV', 'development'),  # 'production' для боевика
+    'root': os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+}
+
+if ROLLBAR['access_token'] and ROLLBAR['environment'] == 'production':
+    rollbar.init(
+        access_token=ROLLBAR['access_token'],
+        environment=ROLLBAR['environment'],
+        root=ROLLBAR['root'],
+    )
 
 load_dotenv()
 
@@ -39,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "task_manager.middleware.RollbarNotifierMiddleware",
 ]
 
 ROOT_URLCONF = "task_manager.urls"
