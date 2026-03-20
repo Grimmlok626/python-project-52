@@ -4,15 +4,16 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from ..models import Task
 from .forms import TaskForm
+from django_filters.views import FilterView
+from .filters import TaskFilter
 
-class TaskListView(LoginRequiredMixin, generic.ListView):
+
+class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
-    template_name = 'tasks/task_list.html'
     context_object_name = 'tasks'
-
-    def get_queryset(self):
-        # Можно фильтровать, например, только свои задачи или все
-        return Task.objects.all()
+    template_name = 'tasks/task_list.html'
+    filterset_class = TaskFilter
+    paginate_by = 10
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task

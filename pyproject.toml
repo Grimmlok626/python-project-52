@@ -9,6 +9,7 @@ dependencies = [
     "python-dotenv",
     "django-bootstrap5",
     "psycopg2-binary",
+    "django-filter",
 ]
 
 [tool.hatch.envs.default]
