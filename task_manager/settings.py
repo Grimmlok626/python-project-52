@@ -25,7 +25,12 @@ SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key-for-dev")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'webserver',
+    'python-project-52-7l3z.onrender.com',
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
