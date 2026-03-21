@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from task_manager import views
-from .views import RegisterView
+from .views import home, RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
