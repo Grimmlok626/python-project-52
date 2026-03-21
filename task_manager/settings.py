@@ -80,7 +80,7 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'postgres://database_name_oqut_user:mRTPazHqUMldeALqN2A0Tr4j2ykqEczL@dpg-d6av3iumcj7s73enf5n0-a.virginia-postgres.render.com/database_name_oqut')
+        default=os.getenv('DATABASE_URL')
     )
 }
 
