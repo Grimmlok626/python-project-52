@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('tasks/', include('task_manager.tasks.urls')),
-    path('register/', views.RegisterView.as_view(), name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('statuses/', include('task_manager.statuses.urls')),
     path('labels/', include('task_manager.labels.urls')),
     path('', views.home, name='home'),
