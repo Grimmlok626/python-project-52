@@ -12,7 +12,7 @@ def home(request):
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'registration/register.html'
-    success_url = reverse_lazy('login')  # или куда вы хотите после регистрации
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         user = form.save()
