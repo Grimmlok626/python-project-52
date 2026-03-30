@@ -20,13 +20,14 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
+        response = super().form_valid(form)
         messages.success(self.request, 'Пользователь успешно зарегистрирован')
-        return super().form_valid(form)
+        return response
 
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    fields = ['first_name', 'last_name']
+    fields = ['first_name', 'last_name', 'username']
     template_name = 'users/user_form.html'
     success_url = reverse_lazy('users:list')
 
@@ -34,7 +35,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user == self.get_object()
 
     def handle_no_permission(self):
-        messages.error(self.request, 'У вас нет прав для изменения')
+        messages.error(self.request, 'У вас нет прав для изменения другого пользователя.')
         return super().handle_no_permission()
 
 
@@ -47,5 +48,5 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == self.get_object()
 
     def handle_no_permission(self):
-        messages.error(self.request, 'У вас нет прав для удаления')
+        messages.error(self.request, 'У вас нет прав для изменения другого пользователя.')
         return super().handle_no_permission()
