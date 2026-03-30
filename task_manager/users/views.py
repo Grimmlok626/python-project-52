@@ -20,7 +20,6 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        self.object = form.save()
         messages.success(self.request, 'Пользователь успешно зарегистрирован')
         return super().form_valid(form)
 
