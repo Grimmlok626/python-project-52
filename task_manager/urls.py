@@ -7,7 +7,7 @@ from task_manager.users.views import UserCreateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('task_manager.users.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('register/', UserCreateView.as_view(), name='register'),
     path('tasks/', include('task_manager.tasks.urls')),
