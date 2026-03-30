@@ -8,14 +8,3 @@ from django.shortcuts import render
 
 def home(request):
     return render(request, "home.html")
-
-class RegisterView(CreateView):
-    form_class = RegisterForm
-    template_name = 'registration/register.html'
-    success_url = reverse_lazy('login')
-
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        messages.success(self.request, 'Вы успешно зарегистрировались!')
-        return super().form_valid(form)

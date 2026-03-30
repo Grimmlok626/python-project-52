@@ -4,27 +4,27 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
 
-# выводит список всех пользователей
+from .forms import RegisterForm
+
+
 class UserListView(ListView):
     model = User
     template_name = 'users/user_list.html'
     context_object_name = 'users'
 
-# регистрация нового пользователя
+
 class UserCreateView(CreateView):
     model = User
-    fields = ['username', 'first_name', 'last_name', 'password']
+    form_class = RegisterForm
     template_name = 'users/user_form.html'
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        user = form.save(commit=False)
-        user.set_password(self.request.POST['password'])
-        user.save()
+        self.object = form.save()
         messages.success(self.request, 'Пользователь успешно зарегистрирован')
         return super().form_valid(form)
 
-# редактирование профиля
+
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
     fields = ['first_name', 'last_name']
@@ -32,21 +32,19 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy('users:list')
 
     def test_func(self):
-        # редактировать может только сам пользователь
         return self.request.user == self.get_object()
 
     def handle_no_permission(self):
         messages.error(self.request, 'У вас нет прав для изменения')
         return super().handle_no_permission()
 
-# удаление пользователя
+
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = User
     template_name = 'users/user_confirm_delete.html'
     success_url = reverse_lazy('users:list')
 
     def test_func(self):
-        # удалить может только сам пользователь
         return self.request.user == self.get_object()
 
     def handle_no_permission(self):
